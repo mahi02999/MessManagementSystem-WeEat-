@@ -43,7 +43,9 @@
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/hanijawad04/WeEat.git
+git clone https://github.com/mahi02999/MessManagementSystem-WeEat-
+
+
 ````
 
 ### 2. Install dependencies
@@ -77,8 +79,8 @@ http://localhost:3000
 ## 🙋‍♂️ Author
 
 * **Hani Jawad**
-* 📧 [hanijawad04@gmail.com](mailto:hanijawad04@gmail.com)
-* 🧑‍💻 [GitHub Profile](https://github.com/hanijawad04)
+* 📧 [bhavsarmahi2004@gmail.com](mailto:bhavsarmahi2004@gmail.com)
+* 🧑‍💻 [GitHub Profile](https://github.com/mahi02999)
 
 ---
 
