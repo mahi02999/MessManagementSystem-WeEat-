@@ -78,7 +78,7 @@ http://localhost:3000
 
 ## 🙋‍♂️ Author
 
-* **Hani Jawad**
+* **Mahi Bhavsar**
 * 📧 [bhavsarmahi2004@gmail.com](mailto:bhavsarmahi2004@gmail.com)
 * 🧑‍💻 [GitHub Profile](https://github.com/mahi02999)
 
