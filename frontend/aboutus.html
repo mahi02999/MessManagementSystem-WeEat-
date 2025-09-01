@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - WeEAT</title>
+    <style>
+        /* Basic reset and styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: url("images/bg.avif");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1em;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 1em;
+        }
+
+        .navbar a:hover {
+            color: #ddd;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Dropdown menu styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 120px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #444;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            padding: 2em;
+            text-align: center;
+        }
+
+        /* About us section styling */
+        .about-section {
+            background-color: #3a3a3a; 
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .about-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">WeEAT</div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="register.html">Sign Up</a>
+            <a href="studentLogin.html">Sign In</a>
+            <div class="dropdown">
+                <a href="#mess">Mess</a>
+                <div class="dropdown-content">
+                    <a href="messRegister.html">Register</a>
+                    <a href="messLogin.html">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="about-section">
+            <h2>About WeEAT</h2>
+            <p>
+                WeEAT is a platform dedicated to providing students with the best mess facilities and meal options in their campus. Our mission is to ensure that students have access to healthy, affordable, and delicious meals that meet their diverse dietary needs.
+            </p>
+            <p>
+                We believe that good food can enhance the learning experience, and we strive to create a vibrant community around food. Join us on this culinary journey and discover the flavors that make campus life enjoyable!
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 WeEAT. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

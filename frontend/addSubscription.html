@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Subscription</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #2d2d2d; /* Dark greyish background */
+            color: #ffffff;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1em;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 1em;
+        }
+
+        .navbar a:hover {
+            color: #ddd;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Form container styling */
+        .form-container {
+            background-color: #3a3a3a; /* Slightly lighter grey for form container */
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            margin: 2em auto;
+        }
+
+        /* Form title */
+        .form-container h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 1em;
+            font-size: 1.5em;
+        }
+
+        /* Label and input styling */
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 0.9em;
+            color: #b3b3b3;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #555;
+            color: #ffffff;
+            outline: none;
+            font-size: 0.9em;
+            margin-bottom: 15px; /* Space between fields */
+        }
+
+        /* Button styling */
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #8b00ff;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #a62cff;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+
+        /* Dropdown menu styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 120px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #444;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">WeEAT</div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="register.html">Sign Up</a>
+            <a href="studentLogin.html">Sign In</a>
+            <div class="dropdown">
+                <a href="#mess">Mess</a>
+                <div class="dropdown-content">
+                    <a href="messRegister.html">Register</a>
+                    <a href="messLogin.html">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="form-container">
+        <h1>Subscribe to a Meal Plan</h1>
+        <form id="subscriptionForm">
+            <label for="mess_name">Mess Name:</label>
+            <select id="mess_name" name="mess_name" required></select>
+
+            <label for="sub_plan">Subscription Plan:</label>
+            <select id="sub_plan" name="sub_plan" required>
+                <option value="veg meal">Veg Meal</option>
+                <option value="nonveg meal">Non-Veg Meal</option>
+                <option value="jain meal">Jain Meal</option>
+            </select>
+
+            <label for="sub_duration">Subscription Duration (months):</label>
+            <input type="number" id="sub_duration" name="sub_duration" required>
+
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 WeEAT. All Rights Reserved.
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Fetch mess names for the dropdown
+            try {
+                const messResponse = await fetch('http://localhost:5000/display/menu');
+                const messData = await messResponse.json();
+        
+                const messDropdown = document.getElementById('mess_name');
+                messData.forEach(mess => {
+                    const option = document.createElement('option');
+                    option.value = mess.mess_name;
+                    option.textContent = mess.mess_name;
+                    messDropdown.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error fetching mess names:', error);
+                alert('Could not load mess names. Please try again later.');
+            }
+        
+            // Handle form submission
+            const form = document.getElementById('subscriptionForm');
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+        
+                // Form data preparation
+                const formData = {
+                    mess_name: document.getElementById('mess_name').value, 
+                    sub_plan: document.getElementById('sub_plan').value,
+                    sub_duration: document.getElementById('sub_duration').value
+                };
+        
+                try {
+                    const response = await fetch('http://localhost:5000/subscription/addSubscription', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    });
+        
+                    if (response.ok) {
+                        const result = await response.json();
+                        const stud_id = result.stud_id; 
+                        console.log("Subscription added successfully, redirecting...", result);
+                        window.location.href = `totalAmount.html?stud_id=${stud_id}`;
+                    } else {
+                        const error = await response.json();
+                        console.error("Error response from server:", error);
+                        alert(error.message);
+                    }
+                } catch (error) {
+                    console.error("Error during form submission:", error);
+                    alert("An error occurred. Please try again later.");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

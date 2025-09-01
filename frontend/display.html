@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Display</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        const app = angular.module('myApp', []);
+        
+        app.controller('DisplayController', function($scope, $http) {
+            $http.get('/display/menu')
+                .then(response => {
+                    $scope.menuItems = response.data;
+                })
+                .catch(error => {
+                    console.error('Error fetching menu data:', error);
+                });
+        });
+    </script>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #2d2d2d; /* Dark greyish background */
+            color: #ffffff;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1em;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 1em;
+        }
+
+        .navbar a:hover {
+            color: #ddd;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Main content styling */
+        .main-content {
+            flex: 1; /* Allow this to grow and fill the available space */
+            padding: 2em;
+            text-align: center; /* Center the main content */
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Collapse borders */
+            margin-top: 1em; /* Space above the table */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #555; /* Darker border for table cells */
+        }
+
+        th {
+            background-color: #3a3a3a; /* Header background */
+            color: #ffffff;
+        }
+
+        /* Link styling */
+        a {
+            display: inline-block;
+            margin-top: 1em;
+            color: #8b00ff; /* Link color */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #a62cff; /* Hover effect for links */
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            width: 100%;
+            position: fixed; /* Keep the footer fixed at the bottom */
+            bottom: 0; /* Align to the bottom of the viewport */
+            left: 0; /* Align to the left */
+        }
+
+        /* Dropdown menu styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 120px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #444;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body ng-controller="DisplayController">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">WeEAT</div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="register.html">Sign Up</a>
+            <a href="studentLogin.html">Sign In</a>
+            <div class="dropdown">
+                <a href="#mess">Mess</a>
+                <div class="dropdown-content">
+                    <a href="messRegister.html">Register</a>
+                    <a href="messLogin.html">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Mess Prices</h1>
+        <table>
+            <tr>
+                <th>Mess Name</th>
+                <th>Veg Meal Prices</th>
+                <th>Non-Veg Meal Prices</th>
+                <th>Jain Meal Prices</th>
+            </tr>
+            <tr ng-repeat="item in menuItems">
+                <td>{{ item.mess_name }}</td>
+                <td>{{ item.veg_meal_prices }}</td>
+                <td>{{ item.non_veg_meal_prices }}</td>
+                <td>{{ item.jain_meal_prices }}</td>
+            </tr>
+        </table>        
+        <a href="/addSubscription.html">Select the mess</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 WeEAT. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login - WeEAT</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #121212;
+            background-image: url("images/bg.avif");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-size:cover;
+            color: #ffffff;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1em;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 1em;
+        }
+
+        .navbar a:hover {
+            color: #ddd;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Dropdown menu styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 120px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #444;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Form container styling */
+        .form-container {
+            background-color: #1e1e1e;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            margin: 2em auto;
+        }
+
+        /* Form title */
+        .form-container h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 1em;
+            font-size: 1.5em;
+        }
+
+        /* Label and input styling */
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 0.9em;
+            color: #b3b3b3;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #ffffff;
+            outline: none;
+            font-size: 0.9em;
+        }
+
+        /* Button styling */
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #8b00ff;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #a62cff;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">WeEAT</div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="register.html">Sign Up</a>
+            <a href="studentLogin.html">Sign In</a>
+            <div class="dropdown">
+                <a href="#mess">Mess</a>
+                <div class="dropdown-content">
+                    <a href="messRegister.html">Register</a>
+                    <a href="messLogin.html">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="form-container">
+        <h1>Student Login</h1>
+        <form action="/student/login" method="POST">
+            <label for="stud_name">Student Name:</label>
+            <input type="text" id="stud_name" name="stud_name" required>
+
+            <label for="password_stud">Password:</label>
+            <input type="password" id="password_stud" name="password_stud" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 WeEAT. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
